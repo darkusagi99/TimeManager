@@ -1,4 +1,4 @@
-package com.sfeir.timemanager;
+package com.sfeir;
 
 import com.sfeir.model.Role;
 import com.sfeir.repository.RoleRepository;
