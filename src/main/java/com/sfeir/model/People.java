@@ -8,22 +8,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Set;
 
-/** Classe représentant les utilisateurs */
-@Document(collection = "user")
-public class User {
+@Document(collection = "people")
+public class People {
 
     @Id
     private String id;
 
     @Indexed(unique = true, direction = IndexDirection.DESCENDING)
-    private String email;
-
     private String fullname;
-    private String password;
-    private boolean enabled;
+
+    private boolean  enabled;
 
     @DBRef
-    private Set<Role> roles;
+    private Set<Presence> presences;
 
     public String getId() {
         return id;
@@ -31,14 +28,6 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getFullname() {
@@ -49,14 +38,6 @@ public class User {
         this.fullname = fullname;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public boolean isEnabled() {
         return enabled;
     }
@@ -65,11 +46,11 @@ public class User {
         this.enabled = enabled;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<Presence> getPresences() {
+        return presences;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setPresences(Set<Presence> presences) {
+        this.presences = presences;
     }
 }

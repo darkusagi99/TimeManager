@@ -12,8 +12,7 @@ public class PageConfig implements WebMvcConfigurer {
     /** Instantiation bean pour la gestion des mots de passe */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
+        return new BCryptPasswordEncoder();
     }
 
     /** Déclaration des vues */
