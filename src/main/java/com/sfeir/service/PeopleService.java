@@ -20,11 +20,11 @@ public class PeopleService {
 
     }
 
-    public void createPeople(People newPeople) {
-        peopleRepository.save(newPeople);
+    public People createPeople(People newPeople) {
+        return peopleRepository.save(newPeople);
     }
 
-    public void updatePeople(People newPeople) {
+    public People updatePeople(People newPeople) {
         // Rechercher la personne existante
         People peopleToUpdate = peopleRepository.findByFullname(newPeople.getFullname());
 
@@ -32,7 +32,7 @@ public class PeopleService {
         // TODO
 
         // Mise à jour des données
-        peopleRepository.save(peopleToUpdate);
+        return peopleRepository.save(peopleToUpdate);
     }
 
     public People findByFullname(String fullname) {

@@ -22,11 +22,12 @@ public class PresenceService {
 
     }
 
-    public void createPresence(Presence newPresence) {
-        presenceRepository.save(newPresence);
+    public Presence createPresence(Presence newPresence) {
+
+        return presenceRepository.save(newPresence);
     }
 
-    public void updatePresence(Presence newPresence) {
+    public Presence updatePresence(Presence newPresence) {
         // Rechercher la personne existante
         Optional<Presence> presenceToUpdate = presenceRepository.findById(newPresence.getId());
 
@@ -34,7 +35,7 @@ public class PresenceService {
         // TODO
 
         // Mise à jour des données
-        presenceRepository.save(presenceToUpdate.get());
+        return presenceRepository.save(presenceToUpdate.get());
     }
 
     public List<Presence> findByPeopleId(String personId) {
