@@ -21,7 +21,7 @@ public class PeopleController {
     @RequestMapping(value = "/people/list", method = RequestMethod.GET)
     public ModelAndView listPeople() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
+        modelAndView.setViewName("people");
         return modelAndView;
     }
 
@@ -44,7 +44,7 @@ public class PeopleController {
             peopleService.createPeople(people);
             modelAndView.addObject("successMessage", "Person has been registered successfully");
             modelAndView.addObject("people", new People());
-            modelAndView.setViewName("login");
+            modelAndView.setViewName("people");
 
         }
         return modelAndView;
@@ -70,7 +70,7 @@ public class PeopleController {
             peopleService.updatePeople(people);
             modelAndView.addObject("successMessage", "Person has been updated successfully");
             modelAndView.addObject("people", new People());
-            modelAndView.setViewName("login");
+            modelAndView.setViewName("people");
 
         }
         return modelAndView;
