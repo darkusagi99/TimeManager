@@ -29,6 +29,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
+    public List<User> listUsers() {
+        return userRepository.findAll();
+    }
+
     /** Sauvegarde utilisateur */
     public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
