@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/** Classe représentant les rôles de l'application */
 @Document(collection = "role")
 public class Role {
 
