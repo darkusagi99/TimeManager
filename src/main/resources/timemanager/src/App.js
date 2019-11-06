@@ -28,13 +28,7 @@ class App extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                      <Link to={'/user/create'} className="nav-link">Create User</Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link to={'/user/list'} className="nav-link">View Users</Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link to={'/user/update'} className="nav-link">Update User</Link>
+                      <Link to={'/user/list'} className="nav-link">Users</Link>
                     </li>
                     <li className="nav-item">
                       <Link to={'/people/create'} className="nav-link">Create People</Link>
@@ -67,7 +61,7 @@ class App extends Component {
               <Switch>
                   <Route path='/user/create' component={ CreateUser } />
                   <Route path='/user/list' component={ Users } />
-                  <Route path='/user/update' component={ UpdateUser } />
+                  <Route path='/user/update/:id' component={ UpdateUser } />
                   <Route path='/people/create' component={ CreatePeople } />
                   <Route path='/people/list' component={ People } />
                   <Route path='/people/update' component={ UpdatePeople } />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 
     class Users extends Component {
@@ -20,16 +21,23 @@ import React, { Component } from 'react'
         render() {
             return (
                 <div>
-                    <center><h1>User List</h1></center>
-                    {this.state.users.map((user) => (
-                        <div class="card">
-                        <div class="card-body">
-                        <h5 class="card-title">{user.id}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{user.email}</h6>
-                        <p class="card-text">{user.fullname}</p>
+                    <center><h1>Users List</h1></center>
+
+                    <div>
+                        <Link to={'/user/create'} className="nav-link">Create User</Link>
                     </div>
-                </div>
-                ))}
+
+                    <table class="table">
+                    <tbody>
+                    {this.state.users.map((user) => (
+                        <tr>
+                            <td>{user.email}</td>
+                            <td>{user.fullname}</td>
+                            <td><Link to={'/user/update/' + user.id} className="nav-link">Update User</Link></td>
+                        </tr>
+                    ))}
+                    </tbody>
+                    </table>
                 </div>
             )
         }
