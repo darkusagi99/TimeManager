@@ -37,12 +37,9 @@ class CreateUser extends Component {
         console.log(`The values are ${this.state.user_name}, ${this.state.user_email}, and ${this.state.user_password}`)
 
         const obj = {
-              id:'',
               fullname: this.state.user_name,
               email: this.state.user_email,
-              password: this.state.user_password,
-              enabled:true,
-              roles:[]
+              password: this.state.user_password
             };
             axios.put('http://localhost:8080/signup', obj)
                 .then(res => console.log(res.data));

@@ -11,11 +11,15 @@ class CreatePeople extends Component {
                             <input type="text" className="form-control"/>
                         </div>
                         <div className="form-group">
-                            <label>Email: </label>
+                            <label>Matin: </label>
                             <input type="text" className="form-control"/>
                         </div>
                         <div className="form-group">
-                            <label>Password: </label>
+                            <label>Soir: </label>
+                            <input type="text" className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label>Repas: </label>
                             <input type="text" className="form-control"/>
                         </div>
                         <div className="form-group">

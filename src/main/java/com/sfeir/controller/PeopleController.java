@@ -4,10 +4,7 @@ import com.sfeir.model.People;
 import com.sfeir.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -29,8 +26,8 @@ public class PeopleController {
 
     /** Mapping page création des personnes */
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value = "/people/create", method = RequestMethod.POST)
-    public People createPeople(@Valid People people, BindingResult bindingResult) {
+    @RequestMapping(value = "/people/create", method = RequestMethod.PUT)
+    public People createPeople(@RequestBody People people) {
 
         People peopleExists = peopleService.findByFullname(people.getFullname());
         if (peopleExists == null) {

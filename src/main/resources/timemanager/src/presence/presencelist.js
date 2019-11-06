@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 class Presence extends Component {
 
@@ -19,13 +20,20 @@ class Presence extends Component {
         render() {
             return (
                 <div>
-                    <center><h1>Presence List</h1></center>
+                    <center><h1>Presence</h1></center>
+
+                    <div>
+                        <Link to={'/presence/create'} className="nav-link">Create Presence</Link>
+                    </div>
+
                     {this.state.users.map((user) => (
                         <div class="card">
                         <div class="card-body">
                         <h5 class="card-title">{user.id}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{user.email}</h6>
                         <p class="card-text">{user.fullname}</p>
+
+                        <Link to={'/presence/update/' + user.id} className="nav-link">Update Presence</Link>
                     </div>
                 </div>
                 ))}

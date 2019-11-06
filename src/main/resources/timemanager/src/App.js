@@ -31,22 +31,10 @@ class App extends Component {
                       <Link to={'/user/list'} className="nav-link">Users</Link>
                     </li>
                     <li className="nav-item">
-                      <Link to={'/people/create'} className="nav-link">Create People</Link>
+                      <Link to={'/people/list'} className="nav-link">People</Link>
                     </li>
                     <li className="nav-item">
-                      <Link to={'/people/list'} className="nav-link">View People</Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link to={'/people/update'} className="nav-link">Update People</Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link to={'/presence/create'} className="nav-link">Create Presence</Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link to={'/presence/list'} className="nav-link">View Presence</Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link to={'/presence/update'} className="nav-link">Update Presence</Link>
+                      <Link to={'/presence/list'} className="nav-link">Presence</Link>
                     </li>
                     <li className="nav-item">
                       <Link to={'/presence/updateShort'} className="nav-link">Update Presence - Short</Link>
@@ -57,7 +45,6 @@ class App extends Component {
                   </ul>
                 </div>
               </nav> <br/>
-              <h2>Welcome to React CRUD Tutorial</h2> <br/>
               <Switch>
                   <Route path='/user/create' component={ CreateUser } />
                   <Route path='/user/list' component={ Users } />
