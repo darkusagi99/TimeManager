@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 class People extends Component {
                 constructor(props) {
                   super(props);
-                  this.state = { users: [] };
+                  this.state = { peoples: [] };
                 }
 
                 componentDidMount() {
-                    fetch('http://localhost:8080/user/list')
+                    fetch('http://localhost:8080/people/list')
                     .then(res => res.json())
                     .then((data) => {
-                        this.setState({ users: data })
+                        this.setState({ peoples: data })
                     })
                     .catch(console.log)
                 }
@@ -25,17 +25,16 @@ class People extends Component {
                                 <Link to={'/people/create'} className="nav-link">Create People</Link>
                             </div>
 
-                            {this.state.users.map((user) => (
+                            {this.state.peoples.map((people) => (
                                 <div class="card">
-                                <div class="card-body">
-                                <h5 class="card-title">{user.id}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{user.email}</h6>
-                                <p class="card-text">{user.fullname}</p>
+                                    <div class="card-body">
+                                    <h5 class="card-title">{people.id}</h5>
+                                    <p class="card-text">{people.fullname}</p>
 
-                                <Link to={'/people/update/' + user.id} className="nav-link">Update People</Link>
-                            </div>
-                        </div>
-                        ))}
+                                    <Link to={'/people/update/' + people.id} className="nav-link">Update People</Link>
+                                     </div>
+                                </div>
+                            ))}
                         </div>
                     )
                 }
