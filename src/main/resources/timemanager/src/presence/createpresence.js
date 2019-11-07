@@ -7,15 +7,18 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import axios from 'axios';
 
 class CreatePresence extends Component {
 
         constructor(props) {
           super(props);
+          this.handlePersonChange = this.handlePersonChange.bind(this);
           this.handleDateChange = this.handleDateChange.bind(this);
           this.handleArrivalChange = this.handleArrivalChange.bind(this);
           this.handleDepartureChange = this.handleDepartureChange.bind(this);
           this.handleMealChange = this.handleMealChange.bind(this);
+          this.onSubmit = this.onSubmit.bind(this);
 
           this.state = {
               personId : '',
@@ -41,10 +44,20 @@ class CreatePresence extends Component {
             // Initialisation des heures
             this.state.arrivalTime.setHours(7);
             this.state.arrivalTime.setMinutes(0);
+            this.state.arrivalTime.setSeconds(0);
             this.state.depatureTime.setHours(16);
             this.state.depatureTime.setMinutes(30);
+            this.state.arrivalTime.setSeconds(0);
 
         }
+
+
+
+      handlePersonChange = e => {
+          this.setState({
+                    personId : e.target.value
+          });
+      }
 
       handleDateChange = date => {
           this.setState({
@@ -71,16 +84,38 @@ class CreatePresence extends Component {
                 this.state.hasMeal = active;
       }
 
+      onSubmit(e) {
+                    e.preventDefault();
+
+                    const obj = {
+                            personId : this.state.personId,
+                            presenceDay : this.state.selectedDate,
+                            arrival : this.state.arrivalTime,
+                            departure : this.state.depatureTime,
+                            hasMeal : this.state.hasMeal
+                        };
+                        axios.put('http://localhost:8080/presence/create', obj)
+                            .then(res => console.log(res.data));
+
+                    this.setState({
+                            personId : '',
+                            selectedDate : new Date(),
+                            arrivalTime : new Date(),
+                            depatureTime : new Date(),
+                            hasMeal : false
+                    })
+            }
+
         render() {
             return (
                 <div style={{marginTop: 10}}>
                     <h3>Create Presence</h3>
-                    <form>
+                    <form onSubmit={this.onSubmit}>
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <label class="input-group-text" for="inputGroupPerson">Person</label>
                           </div>
-                          <select class="custom-select" id="inputGroupPerson">
+                          <select class="custom-select" id="inputGroupPerson" onChange={this.handlePersonChange}>
                             <option selected>Choose...</option>
                             {this.state.users.map((user) => (
                                 <option value={user.id}>{user.fullname}</option>

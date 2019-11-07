@@ -5,14 +5,14 @@ class Presence extends Component {
 
         constructor(props) {
           super(props);
-          this.state = { users: [] };
+          this.state = { presences: [] };
         }
 
         componentDidMount() {
-            fetch('http://localhost:8080/user/list')
+            fetch('http://localhost:8080/presence/list')
             .then(res => res.json())
             .then((data) => {
-                this.setState({ users: data })
+                this.setState({ presences: data })
             })
             .catch(console.log)
         }
@@ -26,14 +26,13 @@ class Presence extends Component {
                         <Link to={'/presence/create'} className="nav-link">Create Presence</Link>
                     </div>
 
-                    {this.state.users.map((user) => (
+                    {this.state.presences.map((presence) => (
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">{user.id}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{user.email}</h6>
-                                <p class="card-text">{user.fullname}</p>
+                                <h5 class="card-title">{presence.id}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{presence.personId}</h6>
 
-                                <Link to={'/presence/update/' + user.id} className="nav-link">Update Presence</Link>
+                                <Link to={'/presence/update/' + presence.presence} className="nav-link">Update Presence</Link>
                             </div>
                         </div>
                      ))}
