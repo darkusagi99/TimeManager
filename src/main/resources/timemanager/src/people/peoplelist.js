@@ -25,16 +25,24 @@ class People extends Component {
                                 <Link to={'/people/create'} className="nav-link">Create People</Link>
                             </div>
 
-                            {this.state.peoples.map((people) => (
-                                <div class="card">
-                                    <div class="card-body">
-                                    <h5 class="card-title">{people.id}</h5>
-                                    <p class="card-text">{people.fullname}</p>
+                            <table class="table">
+                                <tbody>
+                                    {this.state.peoples.map((people) => (
+                                        <tr>
+                                            <td>{people.fullname}</td>
 
-                                    <Link to={'/people/update/' + people.id} className="nav-link">Update People</Link>
-                                     </div>
-                                </div>
-                            ))}
+                                            <td>Morning : {people.standardArrival.join(' ')}</td>
+
+                                            <td>Evening : {people.standardDeparture.join(' ')}</td>
+
+                                            <td>Meal : {people.standardMeal.join(' ')}</td>
+
+                                            <td><Link to={'/people/update/' + people.id} className="nav-link">Update People</Link></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+
                         </div>
                     )
                 }
