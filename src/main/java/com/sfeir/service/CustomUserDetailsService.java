@@ -29,6 +29,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
+    public Optional<User> findUserById(String id) {
+        return userRepository.findById(id);
+    }
+
     public List<User> listUsers() {
         return userRepository.findAll();
     }

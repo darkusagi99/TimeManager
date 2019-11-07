@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
         }
 
         componentDidMount() {
-            fetch('http://localhost:8080/user/list')
+            fetch('http://localhost:8080/user/')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ users: data })
