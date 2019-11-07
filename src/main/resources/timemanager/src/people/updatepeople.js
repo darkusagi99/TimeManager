@@ -33,7 +33,19 @@ class UpdatePeople extends Component {
                     standardArrival : new Map(data.standardArrival.map(i => [i, true])),
                     standardDeparture : new Map(data.standardDeparture.map(i => [i, true])),
                     standardMeal : new Map(data.standardMeal.map(i => [i, true]))
-                 })
+                 });
+                 data.standardArrival.includes("MONDAY") ? this.refs.arrivalMonday.classList.add('active') : this.refs.arrivalMonday.classList.remove('active') ;
+                 data.standardArrival.includes("TUESDAY") ? this.refs.arrivalTuesday.classList.add('active') : this.refs.arrivalTuesday.classList.remove('active') ;
+                 data.standardArrival.includes("THURSDAY") ? this.refs.arrivalThursday.classList.add('active') : this.refs.arrivalThursday.classList.remove('active') ;
+                 data.standardArrival.includes("FRIDAY") ? this.refs.arrivalFriday.classList.add('active') : this.refs.arrivalFriday.classList.remove('active') ;
+                 data.standardDeparture.includes("MONDAY") ? this.refs.leaveMonday.classList.add('active') : this.refs.leaveMonday.classList.remove('active') ;
+                 data.standardDeparture.includes("TUESDAY") ? this.refs.leaveTuesday.classList.add('active') : this.refs.leaveTuesday.classList.remove('active') ;
+                 data.standardDeparture.includes("THURSDAY") ? this.refs.leaveThursday.classList.add('active') : this.refs.leaveThursday.classList.remove('active') ;
+                 data.standardDeparture.includes("FRIDAY") ? this.refs.leaveFriday.classList.add('active') : this.refs.leaveFriday.classList.remove('active') ;
+                 data.standardMeal.includes("MONDAY") ? this.refs.mealMonday.classList.add('active') : this.refs.mealMonday.classList.remove('active') ;
+                 data.standardMeal.includes("TUESDAY") ? this.refs.mealTuesday.classList.add('active') : this.refs.mealTuesday.classList.remove('active') ;
+                 data.standardMeal.includes("THURSDAY") ? this.refs.mealThursday.classList.add('active') : this.refs.mealThursday.classList.remove('active') ;
+                 data.standardMeal.includes("FRIDAY") ? this.refs.mealFriday.classList.add('active') : this.refs.mealFriday.classList.remove('active') ;
             })
             .catch(console.log)
         }
@@ -116,28 +128,28 @@ class UpdatePeople extends Component {
                         <div className="form-group">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-light disabled">Morning</button>
-                                <button type="button" class="btn btn-secondary" value="MONDAY"  onClick={this.onButtonArrivalChange} >Monday</button>
-                                <button type="button" class="btn btn-secondary" value="TUESDAY"  onClick={this.onButtonArrivalChange} >Tuesday</button>
-                                <button type="button" class="btn btn-secondary" value="THURSDAY"  onClick={this.onButtonArrivalChange} >Thursday</button>
-                                <button type="button" class="btn btn-secondary" value="FRIDAY"  onClick={this.onButtonArrivalChange} >Friday</button>
+                                <button type="button" class="btn btn-secondary" value="MONDAY" ref="arrivalMonday"  onClick={this.onButtonArrivalChange} >Monday</button>
+                                <button type="button" class="btn btn-secondary" value="TUESDAY" ref="arrivalTuesday"  onClick={this.onButtonArrivalChange} >Tuesday</button>
+                                <button type="button" class="btn btn-secondary" value="THURSDAY" ref="arrivalThursday"  onClick={this.onButtonArrivalChange} >Thursday</button>
+                                <button type="button" class="btn btn-secondary" value="FRIDAY" ref="arrivalFriday"  onClick={this.onButtonArrivalChange} >Friday</button>
                             </div>
                         </div>
                         <div className="form-group">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-light disabled">Evening</button>
-                                <button type="button" class="btn btn-secondary" value="MONDAY"  onClick={this.onButtonDepartureChange} >Monday</button>
-                                <button type="button" class="btn btn-secondary" value="TUESDAY"  onClick={this.onButtonDepartureChange} >Tuesday</button>
-                                <button type="button" class="btn btn-secondary" value="THURSDAY"  onClick={this.onButtonDepartureChange} >Thursday</button>
-                                <button type="button" class="btn btn-secondary" value="FRIDAY"  onClick={this.onButtonDepartureChange} >Friday</button>
+                                <button type="button" class="btn btn-secondary" value="MONDAY" ref="leaveMonday"  onClick={this.onButtonDepartureChange} >Monday</button>
+                                <button type="button" class="btn btn-secondary" value="TUESDAY" ref="leaveTuesday"  onClick={this.onButtonDepartureChange} >Tuesday</button>
+                                <button type="button" class="btn btn-secondary" value="THURSDAY" ref="leaveThursday"  onClick={this.onButtonDepartureChange} >Thursday</button>
+                                <button type="button" class="btn btn-secondary" value="FRIDAY" ref="leaveFriday"  onClick={this.onButtonDepartureChange} >Friday</button>
                             </div>
                         </div>
                         <div className="form-group">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-light disabled">Meal</button>
-                                <button type="button" class="btn btn-secondary" value="MONDAY"  onClick={this.onButtonMealChange} >Monday</button>
-                                <button type="button" class="btn btn-secondary" value="TUESDAY"  onClick={this.onButtonMealChange} >Tuesday</button>
-                                <button type="button" class="btn btn-secondary" value="THURSDAY"  onClick={this.onButtonMealChange} >Thursday</button>
-                                <button type="button" class="btn btn-secondary" value="FRIDAY"  onClick={this.onButtonMealChange} >Friday</button>
+                                <button type="button" class="btn btn-secondary" value="MONDAY" ref="mealMonday"  onClick={this.onButtonMealChange} >Monday</button>
+                                <button type="button" class="btn btn-secondary" value="TUESDAY" ref="mealTuesday"  onClick={this.onButtonMealChange} >Tuesday</button>
+                                <button type="button" class="btn btn-secondary" value="THURSDAY" ref="mealThursday"  onClick={this.onButtonMealChange} >Thursday</button>
+                                <button type="button" class="btn btn-secondary" value="FRIDAY" ref="mealFriday"  onClick={this.onButtonMealChange} >Friday</button>
                             </div>
                         </div>
                         <div className="form-group">
