@@ -26,18 +26,18 @@ class CreatePresence extends Component {
               arrivalTime : new Date(),
               depatureTime : new Date(),
               hasMeal : false,
-              users: []
+              peoples: []
           }
         }
 
 
         componentDidMount() {
 
-            // Chargement liste utilisateurs
-            fetch('http://localhost:8080/user/list')
+            // Chargement liste personnes
+            fetch('http://localhost:8080/people/list')
             .then(res => res.json())
             .then((data) => {
-                this.setState({ users: data })
+                this.setState({ peoples: data })
             })
             .catch(console.log)
 
@@ -117,8 +117,8 @@ class CreatePresence extends Component {
                           </div>
                           <select class="custom-select" id="inputGroupPerson" onChange={this.handlePersonChange}>
                             <option selected>Choose...</option>
-                            {this.state.users.map((user) => (
-                                <option value={user.id}>{user.fullname}</option>
+                            {this.state.peoples.map((people) => (
+                                <option value={people.id}>{people.fullname}</option>
                              ))}
                           </select>
                         </div>

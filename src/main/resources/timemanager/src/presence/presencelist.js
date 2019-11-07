@@ -5,7 +5,8 @@ class Presence extends Component {
 
         constructor(props) {
           super(props);
-          this.state = { presences: [] };
+          this.state = { presences: [],
+                        peoples: []};
         }
 
         componentDidMount() {
@@ -15,6 +16,15 @@ class Presence extends Component {
                 this.setState({ presences: data })
             })
             .catch(console.log)
+
+
+            fetch('http://localhost:8080/people/list')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ peoples: data })
+            })
+            .catch(console.log)
+
         }
 
         render() {
@@ -26,16 +36,33 @@ class Presence extends Component {
                         <Link to={'/presence/create'} className="nav-link">Create Presence</Link>
                     </div>
 
-                    {this.state.presences.map((presence) => (
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{presence.id}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{presence.personId}</h6>
+                     <table class="table">
+                     <thead>
+                         <tr>
+                               <th scope="col">Name</th>
+                               <th scope="col">Day</th>
+                               <th scope="col">Arrival</th>
+                               <th scope="col">Departure</th>
+                               <th scope="col">Meal</th>
+                               <th scope="col">&nbsp;</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                     {this.state.presences.map((presence) => (
+                         <tr>
+                             <td>{this.state.peoples.filter((people) => (people.id == presence.personId)).map((people) => people.fullname)}</td>
+                             <td>{presence.presenceDay}</td>
+                             <td>{presence.arrival}</td>
+                             <td>{presence.departure}</td>
+                             <td>{presence.hasMeal}</td>
 
-                                <Link to={'/presence/update/' + presence.presence} className="nav-link">Update Presence</Link>
-                            </div>
-                        </div>
+                             <Link to={'/presence/update/' + presence.presence} className="nav-link">Update Presence</Link>
+                         </tr>
                      ))}
+                     </tbody>
+                     </table>
+
+
                 </div>
             )
         }
