@@ -96,6 +96,7 @@ class CreatePresence extends Component {
                                       margin="normal"
                                       id="date-picker-inline"
                                       label="Date"
+                                      autoOk="true"
                                       value={this.state.selectedDate}
                                       onChange={this.handleDateChange}
                                       KeyboardButtonProps={{
@@ -110,6 +111,7 @@ class CreatePresence extends Component {
                                       margin="normal"
                                       id="time-picker"
                                       label="Arrival"
+                                      ampm={false}
                                       value={this.state.arrivalTime}
                                       onChange={this.handleArrivalChange}
                                       KeyboardButtonProps={{
@@ -124,6 +126,7 @@ class CreatePresence extends Component {
                                       margin="normal"
                                       id="time-picker"
                                       label="Departure"
+                                      ampm={false}
                                       value={this.state.depatureTime}
                                       onChange={this.handleDepartureChange}
                                       KeyboardButtonProps={{
