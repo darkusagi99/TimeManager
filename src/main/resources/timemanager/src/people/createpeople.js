@@ -70,7 +70,7 @@ class CreatePeople extends Component {
                     standardDeparture:  Array.from( this.state.standardDeparture.keys()),
                     standardMeal: Array.from( this.state.standardMeal.keys())
                   };
-                  axios.put('http://localhost:8080/people/create', obj)
+                  axios.put('http://localhost:8080/people/', obj)
                       .then(res => console.log(res.data));
 
               this.setState({

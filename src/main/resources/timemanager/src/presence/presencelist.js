@@ -19,7 +19,7 @@ class Presence extends Component {
             .catch(console.log)
 
 
-            fetch('http://localhost:8080/people/list')
+            fetch('http://localhost:8080/people/')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ peoples: data })

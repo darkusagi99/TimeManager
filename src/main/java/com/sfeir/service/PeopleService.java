@@ -20,19 +20,18 @@ public class PeopleService {
 
     }
 
+    public People findPeopleById(String id) {
+
+        return peopleRepository.findById(id).orElse(null);
+    }
+
     public People createPeople(People newPeople) {
         return peopleRepository.save(newPeople);
     }
 
     public People updatePeople(People newPeople) {
-        // Rechercher la personne existante
-        People peopleToUpdate = peopleRepository.findByFullname(newPeople.getFullname());
-
-        // Copie des champs
-        // TODO
-
         // Mise à jour des données
-        return peopleRepository.save(peopleToUpdate);
+        return peopleRepository.save(newPeople);
     }
 
     public People findByFullname(String fullname) {
