@@ -94,7 +94,7 @@ class CreatePresence extends Component {
                             departure : this.state.depatureTime,
                             hasMeal : this.state.hasMeal
                         };
-                        axios.put('http://localhost:8080/presence/create', obj)
+                        axios.put('http://localhost:8080/presence/', obj)
                             .then(res => console.log(res.data));
 
                     this.setState({

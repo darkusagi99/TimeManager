@@ -28,14 +28,8 @@ public class PresenceService {
     }
 
     public Presence updatePresence(Presence newPresence) {
-        // Rechercher la personne existante
-        Optional<Presence> presenceToUpdate = presenceRepository.findById(newPresence.getId());
-
-        // Copie des champs
-        // TODO
-
         // Mise à jour des données
-        return presenceRepository.save(presenceToUpdate.get());
+        return presenceRepository.save(newPresence);
     }
 
     public List<Presence> findByPeopleId(String personId) {
@@ -46,6 +40,11 @@ public class PresenceService {
 
     public Presence findByPeopleIdAndDate(String personId, Date presenceDay) {
         return presenceRepository.findByPersonIdAndPresenceDay(personId, presenceDay);
+    }
+
+
+    public Presence findById(String id) {
+        return presenceRepository.findById(id).orElse(null);
     }
 
 }

@@ -17,7 +17,7 @@ public class UserController {
     /** Mapping page liste des utilisateurs */
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/user/", method = RequestMethod.GET)
-    public List<User> listPeople() {
+    public List<User> listUsers() {
         return userService.listUsers();
     }
 
@@ -25,7 +25,7 @@ public class UserController {
     /** Mapping page liste des utilisateurs */
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public User listPeople(@PathVariable String id) {
+    public User getUser(@PathVariable String id) {
         return userService.findUserById(id).orElse(null);
     }
 

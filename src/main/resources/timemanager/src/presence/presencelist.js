@@ -11,7 +11,7 @@ class Presence extends Component {
         }
 
         componentDidMount() {
-            fetch('http://localhost:8080/presence/list')
+            fetch('http://localhost:8080/presence/')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ presences: data })
@@ -62,7 +62,7 @@ class Presence extends Component {
                              <td>{presence.departure ? (this.displayFormatedTime(presence.departure)) : ("-")}</td>
                              <td>{presence.hasMeal ? ("true") : ("false")}</td>
 
-                             <td><Link to={'/presence/update/' + presence.presence} className="nav-link">Update Presence</Link></td>
+                             <td><Link to={'/presence/update/' + presence.id} className="nav-link">Update Presence</Link></td>
                          </tr>
                      ))}
                      </tbody>

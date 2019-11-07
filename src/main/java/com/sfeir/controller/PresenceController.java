@@ -17,16 +17,23 @@ public class PresenceController {
 
     /** Mapping page liste des presences */
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value = "/presence/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/presence/", method = RequestMethod.GET)
     public List<Presence> listPresence() {
         return presenceService.listPresence();
+    }
+
+    /** Mapping page liste des presences */
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value = "/presence/{id}", method = RequestMethod.GET)
+    public Presence getPresence(@PathVariable String id) {
+        return presenceService.findById(id);
     }
 
 
 
     /** Mapping page création des presences */
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value = "/presence/create", method = RequestMethod.PUT)
+    @RequestMapping(value = "/presence/", method = RequestMethod.PUT)
     public Presence createPresence(@RequestBody Presence presence) {
 
         Presence presenceExists = presenceService.findByPeopleIdAndDate(presence.getPersonId(), presence.getPresenceDay());
@@ -42,10 +49,10 @@ public class PresenceController {
 
     /** Mapping page mise à jour des presences */
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value = "/presence/update", method = RequestMethod.POST)
-    public Presence updatePresence(@Valid Presence presence, BindingResult bindingResult) {
+    @RequestMapping(value = "/presence/", method = RequestMethod.POST)
+    public Presence updatePresence(@RequestBody Presence presence) {
 
-        Presence presenceExists = presenceService.findByPeopleIdAndDate(presence.getPersonId(), presence.getPresenceDay());
+        Presence presenceExists = presenceService.findById(presence.getId());
         if (presenceExists != null) {
             return presenceService.updatePresence(presence);
 

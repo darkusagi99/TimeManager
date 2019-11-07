@@ -51,10 +51,10 @@ class App extends Component {
                   <Route path='/user/update/:id' component={ UpdateUser } />
                   <Route path='/people/create' component={ CreatePeople } />
                   <Route path='/people/list' component={ People } />
-                  <Route path='/people/update' component={ UpdatePeople } />
+                  <Route path='/people/update/:id' component={ UpdatePeople } />
                   <Route path='/presence/create' component={ CreatePresence } />
                   <Route path='/presence/list' component={ Presence } />
-                  <Route path='/presence/update' component={ UpdatePresence } />
+                  <Route path='/presence/update/:id' component={ UpdatePresence } />
                   <Route path='/presence/updateShort' component={ CreateFastPresence } />
                   <Route path='/report/month' component={ ReportPresence } />
               </Switch>
