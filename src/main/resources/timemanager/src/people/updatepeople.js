@@ -29,7 +29,10 @@ class UpdatePeople extends Component {
                 this.setState({
                     previousPeople: data,
                     id : data.id,
-                    fullname : data.fullname
+                    fullname : data.fullname,
+                    standardArrival : new Map(data.standardArrival.map(i => [i, true])),
+                    standardDeparture : new Map(data.standardDeparture.map(i => [i, true])),
+                    standardMeal : new Map(data.standardMeal.map(i => [i, true]))
                  })
             })
             .catch(console.log)
