@@ -28,6 +28,13 @@ import { Link } from 'react-router-dom';
                     </div>
 
                     <table class="table">
+                    <thead>
+                        <tr>
+                              <th scope="col">e-mail</th>
+                              <th scope="col">name</th>
+                              <th scope="col">&nbsp;</th>
+                        </tr>
+                    </thead>
                     <tbody>
                     {this.state.users.map((user) => (
                         <tr>
