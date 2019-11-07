@@ -1,22 +1,141 @@
+import 'date-fns';
 import React, { Component } from 'react'
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 class CreatePresence extends Component {
+
+        constructor(props) {
+          super(props);
+          this.handleDateChange = this.handleDateChange.bind(this);
+          this.handleArrivalChange = this.handleArrivalChange.bind(this);
+          this.handleDepartureChange = this.handleDepartureChange.bind(this);
+          this.handleMealChange = this.handleMealChange.bind(this);
+
+          this.state = {
+              personId : '',
+              selectedDate : new Date(),
+              arrivalTime : new Date(),
+              depatureTime : new Date(),
+              hasMeal : false,
+              users: []
+          }
+        }
+
+
+        componentDidMount() {
+
+            // Chargement liste utilisateurs
+            fetch('http://localhost:8080/user/list')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ users: data })
+            })
+            .catch(console.log)
+
+            // Initialisation des heures
+            this.state.arrivalTime.setHours(7);
+            this.state.arrivalTime.setMinutes(0);
+            this.state.depatureTime.setHours(16);
+            this.state.depatureTime.setMinutes(30);
+
+        }
+
+      handleDateChange = date => {
+          this.setState({
+                    selectedDate : date
+          });
+      }
+
+      handleArrivalChange = date => {
+          this.setState({
+                    arrivalTime : date
+          });
+      }
+
+      handleDepartureChange = date => {
+          this.setState({
+                    depatureTime : date
+          });
+      }
+
+      handleMealChange(e) {
+                const item = e.target.value;
+                e.target.classList.toggle('active');
+                const active = e.target.classList.contains('active');
+                this.state.hasMeal = active;
+      }
+
         render() {
             return (
                 <div style={{marginTop: 10}}>
                     <h3>Create Presence</h3>
                     <form>
-                        <div className="form-group">
-                            <label>Name:  </label>
-                            <input type="text" className="form-control"/>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupPerson">Person</label>
+                          </div>
+                          <select class="custom-select" id="inputGroupPerson">
+                            <option selected>Choose...</option>
+                            {this.state.users.map((user) => (
+                                <option value={user.id}>{user.fullname}</option>
+                             ))}
+                          </select>
                         </div>
                         <div className="form-group">
-                            <label>Email: </label>
-                            <input type="text" className="form-control"/>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <KeyboardDatePicker
+                                      disableToolbar
+                                      variant="inline"
+                                      format="MM/dd/yyyy"
+                                      margin="normal"
+                                      id="date-picker-inline"
+                                      label="Date"
+                                      value={this.state.selectedDate}
+                                      onChange={this.handleDateChange}
+                                      KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                      }}
+                                    />
+                                </MuiPickersUtilsProvider>
                         </div>
                         <div className="form-group">
-                            <label>Password: </label>
-                            <input type="text" className="form-control"/>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <KeyboardTimePicker
+                                      margin="normal"
+                                      id="time-picker"
+                                      label="Arrival"
+                                      value={this.state.arrivalTime}
+                                      onChange={this.handleArrivalChange}
+                                      KeyboardButtonProps={{
+                                        'aria-label': 'change time',
+                                      }}
+                                    />
+                                </MuiPickersUtilsProvider>
+                        </div>
+                        <div className="form-group">
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <KeyboardTimePicker
+                                      margin="normal"
+                                      id="time-picker"
+                                      label="Departure"
+                                      value={this.state.depatureTime}
+                                      onChange={this.handleDepartureChange}
+                                      KeyboardButtonProps={{
+                                        'aria-label': 'change time',
+                                      }}
+                                    />
+                                </MuiPickersUtilsProvider>
+                        </div>
+                        <div className="form-group">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <button type="button" class="btn btn-secondary" onClick={this.handleMealChange} >HasMeal</button>
+                            </div>
                         </div>
                         <div className="form-group">
                             <input type="submit" value="Save" className="btn btn-primary"/>
