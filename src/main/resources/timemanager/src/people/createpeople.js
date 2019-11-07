@@ -47,25 +47,37 @@ class CreatePeople extends Component {
             this.state.standardMeal.set(item, active);
       }
 
+      /** Méthode permettant de filtrer la Map et de ne conserver que les éléments qui nous intéressent */
+      filterMapElement(value, key, map) {
+        if (value != true) {
+            map.delete(key);
+        }
+      }
 
       onSubmit(e) {
               e.preventDefault();
-                  console.log(`The values are ${this.state.fullname}, ${this.state.standardArrival}`)
+              console.log(`The values are ${this.state.fullname}, ${Array.from( this.state.standardArrival.keys())}`)
+
+              this.state.standardArrival.forEach(this.filterMapElement);
+              this.state.standardDeparture.forEach(this.filterMapElement);
+              this.state.standardMeal.forEach(this.filterMapElement);
+
+              console.log(`The values are ${this.state.fullname}, ${Array.from( this.state.standardArrival.keys())}`)
 
               const obj = {
                     fullname: this.state.fullname,
-                    standardArrival: this.state.standardArrival,
-                    standardDeparture: this.state.standardDeparture,
-                    standardMeal: this.state.standardMeal
+                    standardArrival: Array.from( this.state.standardArrival.keys()),
+                    standardDeparture:  Array.from( this.state.standardDeparture.keys()),
+                    standardMeal: Array.from( this.state.standardMeal.keys())
                   };
-                  //axios.put('http://localhost:8080/people/create', obj)
-                  //    .then(res => console.log(res.data));
+                  axios.put('http://localhost:8080/people/create', obj)
+                      .then(res => console.log(res.data));
 
               this.setState({
                     fullname: '',
-                    standardArrival: [],
-                    standardDeparture: [],
-                    standardMeal: []
+                    standardArrival: new Map(),
+                    standardDeparture: new Map(),
+                    standardMeal: new Map()
               })
       }
 
@@ -85,28 +97,28 @@ class CreatePeople extends Component {
                         <div className="form-group">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-light disabled">Morning</button>
-                                <button type="button" class="btn btn-secondary" value="Monday"  onClick={this.onButtonArrivalChange} >Monday</button>
-                                <button type="button" class="btn btn-secondary" value="Tuesday"  onClick={this.onButtonArrivalChange} >Tuesday</button>
-                                <button type="button" class="btn btn-secondary" value="Thursday"  onClick={this.onButtonArrivalChange} >Thursday</button>
-                                <button type="button" class="btn btn-secondary" value="Friday"  onClick={this.onButtonArrivalChange} >Friday</button>
+                                <button type="button" class="btn btn-secondary" value="MONDAY"  onClick={this.onButtonArrivalChange} >Monday</button>
+                                <button type="button" class="btn btn-secondary" value="TUESDAY"  onClick={this.onButtonArrivalChange} >Tuesday</button>
+                                <button type="button" class="btn btn-secondary" value="THURSDAY"  onClick={this.onButtonArrivalChange} >Thursday</button>
+                                <button type="button" class="btn btn-secondary" value="FRIDAY"  onClick={this.onButtonArrivalChange} >Friday</button>
                             </div>
                         </div>
                         <div className="form-group">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-light disabled">Evening</button>
-                                <button type="button" class="btn btn-secondary" value="Monday"  onClick={this.onButtonDepartureChange} >Monday</button>
-                                <button type="button" class="btn btn-secondary" value="Tuesday"  onClick={this.onButtonDepartureChange} >Tuesday</button>
-                                <button type="button" class="btn btn-secondary" value="Thursday"  onClick={this.onButtonDepartureChange} >Thursday</button>
-                                <button type="button" class="btn btn-secondary" value="Friday"  onClick={this.onButtonDepartureChange} >Friday</button>
+                                <button type="button" class="btn btn-secondary" value="MONDAY"  onClick={this.onButtonDepartureChange} >Monday</button>
+                                <button type="button" class="btn btn-secondary" value="TUESDAY"  onClick={this.onButtonDepartureChange} >Tuesday</button>
+                                <button type="button" class="btn btn-secondary" value="THURSDAY"  onClick={this.onButtonDepartureChange} >Thursday</button>
+                                <button type="button" class="btn btn-secondary" value="FRIDAY"  onClick={this.onButtonDepartureChange} >Friday</button>
                             </div>
                         </div>
                         <div className="form-group">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-light disabled">Meal</button>
-                                <button type="button" class="btn btn-secondary" value="Monday"  onClick={this.onButtonMealChange} >Monday</button>
-                                <button type="button" class="btn btn-secondary" value="Tuesday"  onClick={this.onButtonMealChange} >Tuesday</button>
-                                <button type="button" class="btn btn-secondary" value="Thursday"  onClick={this.onButtonMealChange} >Thursday</button>
-                                <button type="button" class="btn btn-secondary" value="Friday"  onClick={this.onButtonMealChange} >Friday</button>
+                                <button type="button" class="btn btn-secondary" value="MONDAY"  onClick={this.onButtonMealChange} >Monday</button>
+                                <button type="button" class="btn btn-secondary" value="TUESDAY"  onClick={this.onButtonMealChange} >Tuesday</button>
+                                <button type="button" class="btn btn-secondary" value="THURSDAY"  onClick={this.onButtonMealChange} >Thursday</button>
+                                <button type="button" class="btn btn-secondary" value="FRIDAY"  onClick={this.onButtonMealChange} >Friday</button>
                             </div>
                         </div>
                         <div className="form-group">
