@@ -5,6 +5,7 @@ class Presence extends Component {
 
         constructor(props) {
           super(props);
+          this.displayFormatedTime = this.displayFormatedTime.bind(this);
           this.state = { presences: [],
                         peoples: []};
         }
@@ -25,6 +26,11 @@ class Presence extends Component {
             })
             .catch(console.log)
 
+        }
+
+        displayFormatedTime(date) {
+            var dateToFormat = new Date(date)
+            return dateToFormat.getHours() + ":" + dateToFormat.getMinutes().toString().padStart(2,0);
         }
 
         render() {
@@ -51,12 +57,12 @@ class Presence extends Component {
                      {this.state.presences.map((presence) => (
                          <tr>
                              <td>{this.state.peoples.filter((people) => (people.id == presence.personId)).map((people) => people.fullname)}</td>
-                             <td>{presence.presenceDay}</td>
-                             <td>{presence.arrival}</td>
-                             <td>{presence.departure}</td>
-                             <td>{presence.hasMeal}</td>
+                             <td>{presence.presenceDay ? (new Date(presence.presenceDay).toLocaleDateString()) : ("-")}</td>
+                             <td>{presence.arrival ? (this.displayFormatedTime(presence.arrival)) : ("-")}</td>
+                             <td>{presence.departure ? (this.displayFormatedTime(presence.departure)) : ("-")}</td>
+                             <td>{presence.hasMeal ? ("true") : ("false")}</td>
 
-                             <Link to={'/presence/update/' + presence.presence} className="nav-link">Update Presence</Link>
+                             <td><Link to={'/presence/update/' + presence.presence} className="nav-link">Update Presence</Link></td>
                          </tr>
                      ))}
                      </tbody>
