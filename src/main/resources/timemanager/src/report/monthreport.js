@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 class ReportPresence extends Component {
 
@@ -42,6 +43,12 @@ class ReportPresence extends Component {
 
         getDaysInMonth = () => (new Array(31)).fill('').map((v,i)=>new Date((new Date).getFullYear(),(new Date).getMonth(),i+1)).filter(v=>v.getMonth()===(new Date).getMonth())
 
+
+        displayFormatedTime(date) {
+            var dateToFormat = new Date(date)
+            return dateToFormat.getHours() + ":" + dateToFormat.getMinutes().toString().padStart(2,0);
+        }
+
         render() {
             return (
                 <div style={{marginTop: 10}}>
@@ -69,8 +76,13 @@ class ReportPresence extends Component {
                                             .filter((presence) => (dayInMonth.getMonth() == new Date(presence.presenceDay).getMonth()))
                                             .filter((presence) => (dayInMonth.getDate() == new Date(presence.presenceDay).getDate()))
                                             .map((presence) => (
+                                                    <p>
+                                                        {presence.arrival ? (this.displayFormatedTime(presence.arrival)) : ("-")}-{presence.departure ? (this.displayFormatedTime(presence.departure)) : ("-")}
+                                                        <br />{presence.hasMeal ? ("With Meal") : ("Without Meal")}
 
-                                                new Date(presence.presenceDay).toISOString())
+                                                        <br /><Link to={'/presence/update/' + presence.id} className="nav-link">Update</Link>
+                                                    </p>
+                                                )
                                             )}
                                          </td>
                                 ))}
