@@ -42,7 +42,8 @@ class CreateUser extends Component {
               password: this.state.user_password
             };
             axios.put('http://localhost:8080/signup', obj)
-                .then(res => console.log(res.data));
+                .then(res => console.log(res.data), this.props.history.push(`/user/list`))
+                .catch(error => {console.log(error);});
 
         this.setState({
           user_name: '',

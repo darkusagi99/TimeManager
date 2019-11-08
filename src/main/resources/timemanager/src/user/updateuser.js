@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {browserHistory} from 'react-router';
 
 class UpdateUser extends Component {
 

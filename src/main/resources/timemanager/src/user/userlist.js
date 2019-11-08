@@ -18,6 +18,15 @@ import { Link } from 'react-router-dom';
             .catch(console.log)
         }
 
+        componentDidUpdate() {
+            fetch('http://localhost:8080/user/')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ users: data })
+            })
+            .catch(console.log)
+        }
+
         render() {
             return (
                 <div>

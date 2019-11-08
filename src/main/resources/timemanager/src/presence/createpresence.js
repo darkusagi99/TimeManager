@@ -95,7 +95,8 @@ class CreatePresence extends Component {
                             hasMeal : this.state.hasMeal
                         };
                         axios.put('http://localhost:8080/presence/', obj)
-                            .then(res => console.log(res.data));
+                            .then(res => console.log(res.data), this.props.history.push(`/presence/list`))
+                            .catch(error => {console.log(error);});
 
                     this.setState({
                             personId : '',

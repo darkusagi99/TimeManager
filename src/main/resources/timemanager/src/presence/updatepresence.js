@@ -108,7 +108,8 @@ class UpdatePresence extends Component {
                             hasMeal : this.state.hasMeal
                         };
                         axios.post('http://localhost:8080/presence/', obj)
-                            .then(res => console.log(res.data));
+                            .then(res => console.log(res.data), this.props.history.push(`/presence/list`))
+                            .catch(error => {console.log(error);});
 
       }
 

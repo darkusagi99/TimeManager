@@ -16,6 +16,15 @@ class People extends Component {
                     .catch(console.log)
                 }
 
+                componentDidUpdate() {
+                    fetch('http://localhost:8080/people/')
+                    .then(res => res.json())
+                    .then((data) => {
+                        this.setState({ peoples: data })
+                    })
+                    .catch(console.log)
+                }
+
                 render() {
                     return (
                         <div>

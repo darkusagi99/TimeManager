@@ -71,7 +71,8 @@ class CreatePeople extends Component {
                     standardMeal: Array.from( this.state.standardMeal.keys())
                   };
                   axios.put('http://localhost:8080/people/', obj)
-                      .then(res => console.log(res.data));
+                      .then(res => console.log(res.data), this.props.history.push(`/people/list`))
+                      .catch(error => {console.log(error);});
 
               this.setState({
                     fullname: '',

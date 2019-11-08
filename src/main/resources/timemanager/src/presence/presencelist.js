@@ -28,6 +28,24 @@ class Presence extends Component {
 
         }
 
+        componentDidUpdate() {
+            fetch('http://localhost:8080/presence/')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ presences: data })
+            })
+            .catch(console.log)
+
+
+            fetch('http://localhost:8080/people/')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ peoples: data })
+            })
+            .catch(console.log)
+
+        }
+
         displayFormatedTime(date) {
             var dateToFormat = new Date(date)
             return dateToFormat.getHours() + ":" + dateToFormat.getMinutes().toString().padStart(2,0);
