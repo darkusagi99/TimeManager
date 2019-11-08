@@ -37,9 +37,6 @@ class App extends Component {
                       <Link to={'/presence/list'} className="nav-link">Presence</Link>
                     </li>
                     <li className="nav-item">
-                      <Link to={'/presence/updateShort'} className="nav-link">Presence - Fast</Link>
-                    </li>
-                    <li className="nav-item">
                       <Link to={'/report/month'} className="nav-link">Month Report</Link>
                     </li>
                   </ul>
@@ -55,8 +52,8 @@ class App extends Component {
                   <Route path='/presence/create' component={ CreatePresence } />
                   <Route path='/presence/list' component={ Presence } />
                   <Route path='/presence/update/:id' component={ UpdatePresence } />
-                  <Route path='/presence/updateShort' component={ CreateFastPresence } />
                   <Route path='/report/month' component={ ReportPresence } />
+                  <Route path='/' component={ CreateFastPresence } />
               </Switch>
             </div>
           </Router>
