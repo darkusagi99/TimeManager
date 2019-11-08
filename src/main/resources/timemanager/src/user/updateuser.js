@@ -5,9 +5,6 @@ class UpdateUser extends Component {
 
         constructor(props) {
                   super(props);
-                  this.onChangeName = this.onChangeName.bind(this);
-                  this.onChangeEmail = this.onChangeEmail.bind(this);
-                  this.onChangePassword = this.onChangePassword.bind(this);
                   this.onSubmit = this.onSubmit.bind(this);
 
                   this.state = {
@@ -31,22 +28,11 @@ class UpdateUser extends Component {
                           .catch(console.log)
               }
 
-
-              onChangeName(e) {
+              onChangeValue = param => e => {
                 this.setState({
-                  user_name: e.target.value
-                });
-              }
-              onChangeEmail(e) {
-                this.setState({
-                  user_email: e.target.value
+                  [param]: e.target.value
                 })
-              }
-              onChangePassword(e) {
-                this.setState({
-                  user_password: e.target.value
-                })
-              }
+              };
 
               onSubmit(e) {
                 e.preventDefault();
@@ -59,7 +45,8 @@ class UpdateUser extends Component {
                       password: this.state.user_password
                     };
                     axios.post('http://localhost:8080/signup', obj)
-                        .then(res => console.log(res.data));
+                        .then(res => console.log(res.data), this.props.history.push(`/user/list`))
+                        .catch(error => {console.log(error);});
 
                 this.setState({
                   user_name: '',
@@ -78,21 +65,21 @@ class UpdateUser extends Component {
                                     <input type="text"
                                             className="form-control"
                                             value={this.state.user_name}
-                                            onChange={this.onChangeName}/>
+                                            onChange={this.onChangeValue("user_name")}/>
                                 </div>
                                 <div className="form-group">
                                     <label>Email: </label>
                                     <input type="text"
                                             className="form-control"
                                             value={this.state.user_email}
-                                            onChange={this.onChangeEmail}/>
+                                            onChange={this.onChangeValue("user_email")}/>
                                 </div>
                                 <div className="form-group">
                                     <label>Password: </label>
                                     <input type="text"
                                             className="form-control"
                                             value={this.state.user_password}
-                                            onChange={this.onChangePassword}/>
+                                            onChange={this.onChangeValue("user_password")}/>
                                 </div>
                                 <div className="form-group">
                                     <input type="submit" value="Save" className="btn btn-primary"/>
