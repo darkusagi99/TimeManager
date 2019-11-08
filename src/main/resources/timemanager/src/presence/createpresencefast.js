@@ -8,6 +8,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import axios from 'axios';
+import {constants} from '../common';
 
 class CreateFastPresence extends Component {
         constructor(props) {
@@ -35,7 +36,7 @@ class CreateFastPresence extends Component {
                 componentDidMount() {
 
                     // Chargement liste personnes
-                    fetch('http://localhost:8080/people/')
+                    fetch(constants.apiUrl + '/people/')
                     .then(res => res.json())
                     .then((data) => {
                         this.setState({ peoples: data })
@@ -49,7 +50,7 @@ class CreateFastPresence extends Component {
               handlePersonChange = e => {
 
                   // Chargement liste personnes
-                  fetch('http://localhost:8080/presenceSearch/' + e.target.value + '/' + this.state.selectedDate.toISOString().slice(0,10))
+                  fetch(constants.apiUrl + '/presenceSearch/' + e.target.value + '/' + this.state.selectedDate.toISOString().slice(0,10))
                   .then(res => res.json())
                   .then((data) => {
                       this.setState({
@@ -103,7 +104,7 @@ class CreateFastPresence extends Component {
                                     departure : this.state.depatureTime,
                                     hasMeal : this.state.hasMeal
                                 };
-                                axios.post('http://localhost:8080/presence/', obj)
+                                axios.post(constants.apiUrl + '/presence/', obj)
                                     .then(res => console.log(res.data), this.props.history.push(`/presence/list`))
                                     .catch(error => {console.log(error);});
 

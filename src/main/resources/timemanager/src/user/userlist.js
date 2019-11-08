@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import {constants} from '../common';
 
 
     class Users extends Component {
@@ -10,7 +11,7 @@ import { Link } from 'react-router-dom';
         }
 
         componentDidMount() {
-            fetch('http://localhost:8080/user/')
+            fetch(constants.apiUrl + '/user/')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ users: data })
@@ -19,7 +20,7 @@ import { Link } from 'react-router-dom';
         }
 
         componentDidUpdate() {
-            fetch('http://localhost:8080/user/')
+            fetch(constants.apiUrl + '/user/')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ users: data })

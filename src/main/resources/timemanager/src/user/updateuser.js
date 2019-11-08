@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {browserHistory} from 'react-router';
+import {constants} from '../common';
 
 class UpdateUser extends Component {
 
@@ -17,7 +17,7 @@ class UpdateUser extends Component {
               }
 
               componentDidMount() {
-                          fetch('http://localhost:8080/user/' + this.props.match.params.id)
+                          fetch(constants.apiUrl + '/user/' + this.props.match.params.id)
                           .then(res => res.json())
                           .then((data) => {
                               this.setState({
@@ -45,7 +45,7 @@ class UpdateUser extends Component {
                       email: this.state.user_email,
                       password: this.state.user_password
                     };
-                    axios.post('http://localhost:8080/signup', obj)
+                    axios.post(constants.apiUrl + '/signup', obj)
                         .then(res => console.log(res.data), this.props.history.push(`/user/list`))
                         .catch(error => {console.log(error);});
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {constants} from '../common';
 
 class CreatePeople extends Component {
 
@@ -70,7 +71,7 @@ class CreatePeople extends Component {
                     standardDeparture:  Array.from( this.state.standardDeparture.keys()),
                     standardMeal: Array.from( this.state.standardMeal.keys())
                   };
-                  axios.put('http://localhost:8080/people/', obj)
+                  axios.put(constants.apiUrl + '/people/', obj)
                       .then(res => console.log(res.data), this.props.history.push(`/people/list`))
                       .catch(error => {console.log(error);});
 

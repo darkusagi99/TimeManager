@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {constants} from '../common';
 
 class UpdatePeople extends Component {
 
@@ -23,7 +24,7 @@ class UpdatePeople extends Component {
 
 
         componentDidMount() {
-            fetch('http://localhost:8080/people/' + this.props.match.params.id)
+            fetch(constants.apiUrl + '/people/' + this.props.match.params.id)
             .then(res => res.json())
             .then((data) => {
                 this.setState({
@@ -101,7 +102,7 @@ class UpdatePeople extends Component {
                     standardDeparture:  Array.from( this.state.standardDeparture.keys()),
                     standardMeal: Array.from( this.state.standardMeal.keys())
                   };
-                  axios.post('http://localhost:8080/people/', obj)
+                  axios.post(constants.apiUrl + '/people/', obj)
                       .then(res => console.log(res.data), this.props.history.push(`/people/list`))
                       .catch(error => {console.log(error);});
 

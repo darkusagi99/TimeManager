@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import {constants} from '../common';
 
 class Presence extends Component {
 
@@ -11,7 +12,7 @@ class Presence extends Component {
         }
 
         componentDidMount() {
-            fetch('http://localhost:8080/presence/')
+            fetch(constants.apiUrl + '/presence/')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ presences: data })
@@ -19,7 +20,7 @@ class Presence extends Component {
             .catch(console.log)
 
 
-            fetch('http://localhost:8080/people/')
+            fetch(constants.apiUrl + '/people/')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ peoples: data })
@@ -29,7 +30,7 @@ class Presence extends Component {
         }
 
         componentDidUpdate() {
-            fetch('http://localhost:8080/presence/')
+            fetch(constants.apiUrl + '/presence/')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ presences: data })
@@ -37,7 +38,7 @@ class Presence extends Component {
             .catch(console.log)
 
 
-            fetch('http://localhost:8080/people/')
+            fetch(constants.apiUrl + '/people/')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ peoples: data })

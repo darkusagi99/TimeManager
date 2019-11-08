@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {constants} from '../common';
 
 class CreateUser extends Component {
 
@@ -41,7 +42,7 @@ class CreateUser extends Component {
               email: this.state.user_email,
               password: this.state.user_password
             };
-            axios.put('http://localhost:8080/signup', obj)
+            axios.put(constants.apiUrl + '/signup', obj)
                 .then(res => console.log(res.data), this.props.history.push(`/user/list`))
                 .catch(error => {console.log(error);});
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import {constants} from '../common';
 
 class People extends Component {
                 constructor(props) {
@@ -8,7 +9,7 @@ class People extends Component {
                 }
 
                 componentDidMount() {
-                    fetch('http://localhost:8080/people/')
+                    fetch(constants.apiUrl + '/people/')
                     .then(res => res.json())
                     .then((data) => {
                         this.setState({ peoples: data })
@@ -17,7 +18,7 @@ class People extends Component {
                 }
 
                 componentDidUpdate() {
-                    fetch('http://localhost:8080/people/')
+                    fetch(constants.apiUrl + '/people/')
                     .then(res => res.json())
                     .then((data) => {
                         this.setState({ peoples: data })
