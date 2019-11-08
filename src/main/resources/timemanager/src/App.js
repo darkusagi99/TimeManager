@@ -37,7 +37,7 @@ class App extends Component {
                       <Link to={'/presence/list'} className="nav-link">Presence</Link>
                     </li>
                     <li className="nav-item">
-                      <Link to={'/presence/updateShort'} className="nav-link">Update Presence - Short</Link>
+                      <Link to={'/presence/updateShort'} className="nav-link">Presence - Fast</Link>
                     </li>
                     <li className="nav-item">
                       <Link to={'/report/month'} className="nav-link">Month Report</Link>

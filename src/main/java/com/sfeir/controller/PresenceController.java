@@ -7,7 +7,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 public class PresenceController {
@@ -27,6 +31,18 @@ public class PresenceController {
     @RequestMapping(value = "/presence/{id}", method = RequestMethod.GET)
     public Presence getPresence(@PathVariable String id) {
         return presenceService.findById(id);
+    }
+
+
+    /** Mapping page liste des presences */
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value = "/presenceSearch/{personId}/{date}", method = RequestMethod.GET)
+    public Presence getPresence(@PathVariable String personId, @PathVariable String date) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+        Date refDate = sdf.parse(date);
+
+        return presenceService.findByPeopleIdAndDate(personId, refDate);
     }
 
 
